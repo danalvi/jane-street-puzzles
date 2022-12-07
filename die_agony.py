@@ -9,7 +9,7 @@ board = np.array([  [0,77,32,403,337,452],
                     [57,33,132,268,492,732] ])
 
 def move(die, c) :
-    new_dice = deepcopy(die)
+    new_dice = deepcopy(die) # took me a long time to realise pythons .copy() does not work on multidimensional arrays properly
     if(c == (0, 1)) :
         temp = new_dice[1][0]
         new_dice[1][0] = new_dice[1][1]; new_dice[1][1] = new_dice[1][2]; new_dice[1][2] = new_dice[1][3]; new_dice[1][3] = temp
@@ -51,7 +51,6 @@ def neighbours(c) :
 visited = np.array([np.zeros(6) for _ in range(1,7)])
 visited[(0,0)] = 1
 def search(xs, d, visited) :
-    # rejectiion criteria
     if( board[xs[-1]] == 732 ) :
         sum = 0
         for i in range(6):
